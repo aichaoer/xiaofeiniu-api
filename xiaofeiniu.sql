@@ -79,7 +79,7 @@ CREATE TABLE xfn_order(
     FOREIGN KEY(tableId) REFERENCES xfn_table(tid)
 );
 
-INSERT INTO xfn_order VALUES (1,1548408430420,1549408430420,3,1)
+INSERT INTO xfn_order VALUES (1,1548408430420,1549408430420,3,1);
 
 /*订单详情*/
 CREATE TABLE xfn_order_detail(
@@ -90,7 +90,7 @@ CREATE TABLE xfn_order_detail(
     orderId	    INT,
     FOREIGN KEY(dishId) REFERENCES xfn_dish(did),
     FOREIGN KEY(orderId) REFERENCES xfn_order(oid)
-)
+);
 
 INSERT INTO xfn_order_detail VALUES (NULL,1000,1,"丁丁",1);
 INSERT INTO xfn_order_detail VALUES (NULL,1001,1,"丽丽",1);

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">获取所有菜品</button>
+    <button id="btn2">获取某一个菜品</button>
+    <hr>
+    <br>
+    <input type="text" id="inputDesc">
+    <input type="file" id="inputFile">
+    <button id="btn3" type="button">异步上传菜品图片</button>
+    <br>
+    <hr>
+    <button id="btn4">添加菜品</button>
+    <button id="btn5">删除菜品</button>
+    <button id="btn6">修改菜品</button>
+    <hr>
+    <!--
+    <button id="bt">0</button>
+    <button id="bt">1</button>
+    <button id="bt">2</button>
+    -->
+
+    <hr>
+    <!--
+    <h2>文件上传</h2>
+    <form action="http://127.0.0.1:8090/admin/dish/image" method="POST" enctype="multipart/form-data">
+        <input type="file" name="dishImg">
+        <input type="text" name="description">
+        <button type="submit">提交</button>
+    </form>
+    -->
+
+    <script src="./axios.min.js"></script>
+    <script>
+        btn1.onclick=function(){
+            axios.get("http://127.0.0.1:8090/admin/dish").then((res)=>{
+                console.log("列表：");
+                console.log(res.data);
+            }).catch((err)=>{
+                console.log(err);
+            })
+        }
+        btn3.onclick=function(){
+            //异步上传文件
+            //客户端要手工创建一个multipart/form-data形式的请求主体
+            var data=new FormData();
+            //向请求主体中追加要提交的数据
+            data.append("description",inputDesc.value);
+            //向请求主体中最佳用户选中的文件
+            //console.log(inputFile)
+            data.append("dishImg",inputFile.files[0]);
+            //使用axios将请求主体异步提交给服务器
+            axios.post("http://127.0.0.1:8090/admin/dish/image",data).then((res)=>{
+                alert(JSON.stringify(res.data));
+            }).catch((err,result)=>{
+                console.log(err);
+            })
+        }
+        btn4.onclick=function(){
+            var data={
+                title:"麻酱烧饼",
+                imgUrl:"1234567.jpg",
+                price:3.5,
+                detail:"详情介绍",
+                categoryId:6
+            }
+            axios.post("http://127.0.0.1:8090/admin/dish",data).then((res)=>{
+                console.log(res.data);
+            }).catch((err)=>{
+                console.log(err);
+            })
+        }
+        btn5.onclick=function(){
+            axios.delete("http://127.0.0.1:8090/admin/dish/54").then((result)=>{
+                console.log("删除菜品执行成功");
+                console.log(result.data);
+            }).catch((err)=>{
+                console.log(err);
+            })
+        }
+        btn6.onclick=function(){
+            //修改菜品
+            var data={did:51,title:"拉面",imgUrl:"156243.jpg",price:8,detail:"劲弹可口，西北面粉精制而成",categoryId:6};
+            axios.put("http://127.0.0.1:8090/admin/dish",data).then((result)=>{
+                console.log("菜品修改成功");
+                console.log(result.data);
+            }).catch((err)=>{
+                console.log(err);
+            })    
+        }
+
+        /*
+        var btnList=document.querySelectorAll("#bt");
+        //for(for i=0;i<btnList.length;i++){
+        for(let i=0;i<btnList.length;i++){   //let 作用于此次循环体内
+            console.log("创建一个单机监听函数……");
+            btnList[i].onclick=function(){
+                console.log(i);
+            }
+            console.log("所有代码执行完成：i="+i);
+        }
+        */
+
+    </script>
+</body>
+</html>
