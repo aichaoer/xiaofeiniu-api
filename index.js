@@ -12,6 +12,8 @@ const bodyParser=require("body-parser");
 const categoryRouter=require("./routes/admin/category");
 const adminRouter=require("./routes/admin/admin");
 const dishRouter=require("./routes/admin/dish");
+const settingsRouter=require("./routes/admin/settings");
+const tableRouter=require("./routes/admin/table");
 
 //创建HTTP应用服务器，启动主服务器
 var app=express();
@@ -29,4 +31,6 @@ app.use(bodyParser.json()); //把json格式的请求注意数据解析出来放�
 app.use('/admin/category',categoryRouter);
 app.use('/admin',adminRouter);
 app.use('/admin/dish',dishRouter);
+app.use('/admin/settings',settingsRouter);
+app.use('/admin/table',tableRouter);
 
