@@ -21,12 +21,12 @@ router.get('/',(req,res)=>{
  * 请求(主体)参数（json格式）：{appName:"xx",adminUrl:"xxx"……}  
  * 含义：根据菜品类别编号，修改该菜品类别
  * 返回值形如： 
- *     {cid:200,msg:"settings updated success"}
+ *     {code:200,msg:"settings updated success"}
  */
 router.put("/",(req,res)=>{
     pool.query("UPDATE xfn_settings SET ?",req.body,(err,result)=>{
         if(err) throw err;
-        res.send({cid:200,msg:"settings updated success"});
+        res.send({code:200,msg:"settings updated success"});
     })
 })
 

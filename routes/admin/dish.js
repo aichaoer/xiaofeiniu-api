@@ -84,7 +84,7 @@ router.post("/",(req,res)=>{
     var data=req.body;  
     pool.query("INSERT INTO xfn_dish SET ?",data,(err,result)=>{
         if(err) throw err;
-        res.send({cid:200,msg:"dish added success",dishId:result.insertId});  //将insert产生的自增编号输出给客户端
+        res.send({code:200,msg:"dish added success",dishId:result.insertId});  //将insert产生的自增编号输出给客户端
     })
 })
 
@@ -99,9 +99,9 @@ router.delete('/:did',(req,res)=>{
     pool.query("DELETE FROM xfn_dish WHERE did=?",req.params.did,(err,result)=>{
         if(err) throw err;
         if(result.affectedRows>0){
-            res.send({cid:200,msg:"dish deleted success"});
+            res.send({code:200,msg:"dish deleted success"});
         }else{
-            res.send({cid:400,msg:"dish not exists"});
+            res.send({code:400,msg:"dish not exists"});
         }
     })
 })
@@ -122,12 +122,12 @@ router.put("/",(req,res)=>{
         // console.log(result);
         if(result.changedRows>0){
             //实际更新了一行
-            res.send({cid:200,msg:"1 dish modified"});
+            res.send({code:200,msg:"1 dish modified"});
         }else if(result.affectedRows==0){
-            res.send({cid:400,msg:"0 dish modified,not exists"});
+            res.send({code:400,msg:"0 dish modified,not exists"});
         }else if(result.affectedRows==1 && result.changedRows==0){
             //影响到1行，但修改了0行————新值与旧值完全一样
-            res.send({cid:401,msg:"0 dish modified,no modification"})
+            res.send({code:401,msg:"0 dish modified,no modification"})
         }
     })
 })
