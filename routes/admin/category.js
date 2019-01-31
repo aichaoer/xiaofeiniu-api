@@ -60,7 +60,7 @@ router.post("/",(req,res)=>{
     pool.query("INSERT INTO xfn_category SET ?",data,(err,result)=>{
         //注意此处sql语句的缩写
         if(err) throw err;
-        res.send({code:200,msg:"1 category added"});
+        res.send({code:200,msg:"1 category added",cid:result.insertId});
     })
 })
 
