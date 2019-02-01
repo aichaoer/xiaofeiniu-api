@@ -6,6 +6,7 @@ console.log("准备启动API服务器");
 console.log(new Date().toLocaleString());
 
 const PORT=8090;
+// const PORT=5050; 新浪云
 const express=require("express");  //modules中的不加./；./本地
 const cors=require("cors");
 const bodyParser=require("body-parser");

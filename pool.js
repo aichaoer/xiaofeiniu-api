@@ -10,6 +10,15 @@ var pool=mysql.createPool({
     password:"",        //数据库管理员密码
     database:"xiaofeiniu",  //默认连接的数据库
     connectionLimit: 10     //连接池中连接数量
+   /*
+   //配合新浪云修改
+   host:process.env.MYSQL_HOST,
+   port:process.env.MYSQL_POST,
+   user:process.env.MYSQL_ACCESSKEY,
+   password:process.env.MYSQL_SECRETKEY,
+   database:"app_"+process.env.MYSQL_APPNAME,
+   connectionLimit: 3
+   */
 });
 
 //导出模块
