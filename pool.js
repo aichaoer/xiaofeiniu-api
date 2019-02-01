@@ -14,9 +14,9 @@ var pool=mysql.createPool({
    //配合新浪云修改
    host:process.env.MYSQL_HOST,
    port:process.env.MYSQL_POST,
-   user:process.env.MYSQL_ACCESSKEY,
-   password:process.env.MYSQL_SECRETKEY,
-   database:"app_"+process.env.MYSQL_APPNAME,
+   user:process.env.ACCESSKEY,
+   password:process.env.SECRETKEY,
+   database:"app_"+process.env.APPNAME,
    connectionLimit: 3
    */
 });
